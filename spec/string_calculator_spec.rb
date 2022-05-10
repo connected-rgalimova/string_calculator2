@@ -7,6 +7,8 @@
 # 7. Numbers greater than 1000 are ignored
 # 8. A single char delimiter can be defined on the first line starting with `//` (e.g `//#\n1#2` for a ‘#’ as the delimiter)
 # 9. A multi char delimiter can be defined on the first line starting with `//` (e.g. `//###\n1###2` for ‘###’ as the delimiter)
+# 10. Allow roman numerals as input
+# 11. Allow roman numerals as output
 
 require './src/string_calculator'
 
