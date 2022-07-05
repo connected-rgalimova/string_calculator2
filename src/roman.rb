@@ -9,7 +9,7 @@ class IntegerToRoman
     [1, 'I']
   ]
 
-  def self.checkInversion (remainder, decimal_key, index, j)
+  def self.checkInversion(remainder, decimal_key, index, j)
     next_decimal_key = CONVERSION[index + j][0]
     next_remainder = remainder % next_decimal_key
     ((remainder - next_remainder) == (decimal_key - next_decimal_key))
@@ -19,7 +19,7 @@ class IntegerToRoman
     remainder = input
     result = ''
     index = 0
-    
+
     while index < CONVERSION.size
       decimal_key = CONVERSION[index][0]
       roman_value = CONVERSION[index][1]
@@ -28,20 +28,20 @@ class IntegerToRoman
       number_of_numerals = remainder / decimal_key
       remainder = remainder % decimal_key
 
-      result = result + roman_value * number_of_numerals
+      result += roman_value * number_of_numerals
 
       # check if we are done
-      if (remainder == 0)
+      if remainder == 0
         index = CONVERSION.size
         break
       end
 
       # there must be more elements in conversion, since remainder is not 0
       next_decimal_key = CONVERSION[index + 1][0]
-      if (decimal_key / next_decimal_key == 5) 
+      if decimal_key / next_decimal_key == 5
         next_remainder = remainder % next_decimal_key
         # if remainder is 4, which is 5(key) - 1(next key), then we want IV instead of IIII
-        if (checkInversion(remainder, decimal_key, index, 1))
+        if checkInversion(remainder, decimal_key, index, 1)
           result = result + CONVERSION[index + 1][1] + roman_value
           remainder = next_remainder
         end
@@ -49,17 +49,17 @@ class IntegerToRoman
       else
         next_decimal_key = CONVERSION[index + 2][0]
         next_remainder = remainder % next_decimal_key
-          # if remainder is 9, then we want IX instead of VIIII
-        if (checkInversion(remainder, decimal_key, index, 2))
+        # if remainder is 9, then we want IX instead of VIIII
+        if checkInversion(remainder, decimal_key, index, 2)
           result = result + CONVERSION[index + 2][1] + roman_value
           remainder = next_remainder
-          index = index + 1
+          index += 1
         end
       end
-      index = index + 1
+      index += 1
     end
-    
-    return result
+
+    result
   end
 end
 
@@ -74,16 +74,20 @@ class RomanToInteger
     'M' => 1000
   }
 
-  def self.calc (n)
+  def self.is_roman?(str)
+    str.split('').all? { |x| CONVERSION[x] }
+  end
+
+  def self.calc(n)
     acc = 0
     prev = 0 # starts new chuck
     n.chars.reverse.each do |x|
-      if (prev == 0)
+      if prev == 0
         # move on to the next digit
-        prev = CONVERSION[x] 
-      elsif (CONVERSION[x] >= prev )
+        prev = CONVERSION[x]
+      elsif CONVERSION[x] >= prev
         # continuing aggregating the chunk
-        acc = acc + prev 
+        acc += prev
         prev = CONVERSION[x]
       else
         # finish the chunk, start a new one when
@@ -92,6 +96,6 @@ class RomanToInteger
         prev = 0
       end
     end
-    return acc + prev
+    acc + prev
   end
 end

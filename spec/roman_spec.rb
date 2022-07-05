@@ -73,7 +73,7 @@ end
 RSpec.describe RomanToInteger do
   subject(:roman_to_integer_calculator) { described_class }
 
-  it "Given a RomanNumeral, return as an Integer 3" do 
+  it 'Given a RomanNumeral, return as an Integer 3' do
     input = 'III'
 
     result = roman_to_integer_calculator.calc(input)
@@ -81,7 +81,7 @@ RSpec.describe RomanToInteger do
     expect(result).to eq 3
   end
 
-  it "Given a RomanNumeral IV , return as an Integer 4" do
+  it 'Given a RomanNumeral IV , return as an Integer 4' do
     input = 'IV'
 
     result = roman_to_integer_calculator.calc(input)
@@ -89,7 +89,7 @@ RSpec.describe RomanToInteger do
     expect(result).to eq 4
   end
 
-  it "Given a RomanNumeral XIV , return as an Integer 14" do 
+  it 'Given a RomanNumeral XIV , return as an Integer 14' do
     input = 'XIV'
 
     result = roman_to_integer_calculator.calc(input)
@@ -97,7 +97,7 @@ RSpec.describe RomanToInteger do
     expect(result).to eq 14
   end
 
-  it "Given a RomanNumeral XXXIX, return as an Integer 39" do 
+  it 'Given a RomanNumeral XXXIX, return as an Integer 39' do
     input = 'XXXIX'
 
     result = roman_to_integer_calculator.calc(input)
@@ -105,7 +105,7 @@ RSpec.describe RomanToInteger do
     expect(result).to eq 39
   end
 
-  it "Given a RomanNumeral CCXLVI, return as an Integer 246" do
+  it 'Given a RomanNumeral CCXLVI, return as an Integer 246' do
     input = 'CCXLVI'
 
     result = roman_to_integer_calculator.calc(input)
@@ -113,7 +113,7 @@ RSpec.describe RomanToInteger do
     expect(result).to eq 246
   end
 
-  it "Given a RomanNumeral DCCLXXXIX, return as an Integer 789 " do
+  it 'Given a RomanNumeral DCCLXXXIX, return as an Integer 789 ' do
     input = 'DCCLXXXIX'
 
     result = roman_to_integer_calculator.calc(input)
@@ -121,14 +121,14 @@ RSpec.describe RomanToInteger do
     expect(result).to eq 789
   end
 
-  it "Given a RomanNumeral MMCDXXI, return as an Integer 2,421 " do
+  it 'Given a RomanNumeral MMCDXXI, return as an Integer 2,421 ' do
     input = 'MMCDXXI'
 
     result = roman_to_integer_calculator.calc(input)
 
     expect(result).to eq 2421
   end
-  it "Given a RomanNumeral MLXVI, return as an Integer 1,066 " do 
+  it 'Given a RomanNumeral MLXVI, return as an Integer 1,066 ' do
     input = 'MLXVI'
 
     result = roman_to_integer_calculator.calc(input)
@@ -136,26 +136,31 @@ RSpec.describe RomanToInteger do
     expect(result).to eq 1066
   end
 
-  it "Given a RomanNumeral CLX, return as an Integer 160 " do
+  it 'Given a RomanNumeral CLX, return as an Integer 160 ' do
     input = 'CLX'
 
     result = roman_to_integer_calculator.calc(input)
 
     expect(result).to eq 160
   end
-  it "Given a RomanNumeral  CCVII, return as an Integer 207" do
+  it 'Given a RomanNumeral  CCVII, return as an Integer 207' do
     input = 'CCVII'
 
     result = roman_to_integer_calculator.calc(input)
 
     expect(result).to eq 207
   end
-  it "Given a RomanNumeral  MIX, return as an Integer 1,009" do 
+  it 'Given a RomanNumeral  MIX, return as an Integer 1,009' do
     input = 'MIX'
 
     result = roman_to_integer_calculator.calc(input)
 
     expect(result).to eq 1009
+  end
+
+  it 'should return true when given a roman numberal' do
+    expect(RomanToInteger.is_roman?('I')).to eq(true)
+    expect(RomanToInteger.is_roman?('MVII')).to eq(true)
   end
 end
 
@@ -169,4 +174,3 @@ end
 # traverse from right to left:
 # if greater than the prior one, then add
 # otherwise subtract and mark end of chunk
-

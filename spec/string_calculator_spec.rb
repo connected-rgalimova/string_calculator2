@@ -44,9 +44,9 @@ RSpec.describe StringCalculator do
   end
 
   it 'should throw an exception when negative numbers are used' do
-    expect {
+    expect do
       calculator.add('-1,2,-3')
-    }.to raise_error('negatives not allowed: -1,-3')
+    end.to raise_error('negatives not allowed: -1,-3')
   end
 
   it 'should ignore any numbers greater than 1000' do
@@ -62,5 +62,14 @@ RSpec.describe StringCalculator do
   it 'should use a complicated delimiter' do
     result = calculator.add('//###\n1###2')
     expect(result).to eq(3)
+  end
+
+  it 'should accept a roman input I and I, and return 2' do
+    result = calculator.add('I,I')
+    expect(result).to eq(2)
+  end
+
+  it 'should return III when given 1 and 2' do
+    expect(calculator.add('1,2')).to eq('III')
   end
 end
